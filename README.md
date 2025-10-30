@@ -1,5 +1,14 @@
 # React Context Part | 4
-
+-Single Page Application with Home Routes,Product Route, Cart Route, 
+-Integrating APIs and Components, 
+-API Call Possible Views such as Scuccess View,Failure View, and Loader View
+-Loader, 
+- Authentication and authorization to access different resources.
+- React form to accept inputs at Login,
+- Route parameters including history,match,
+- Cookies and jwtToken,
+- sorting Products.
+- Included concepts of Reconciliation, React Batch Updation, children Prop, controlled input
 - Empty Cart View
 - Displaying Cart Items Count
 - Deployment
