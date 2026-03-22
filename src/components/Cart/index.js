@@ -14,15 +14,6 @@ const Cart = () => (
         removeAllCartItems()
       }
       const cartList = Array.isArray(value.cartList) ? value.cartList : []
-      {
-        /*
-       value.cartList safely assigns a value to the cartList constant:
-      Array.isArray(value.cartList): It checks if value.cartList is actually an array.
-      ? value.cartList: If it is an array (the check returns true), it uses that array.
-      : []: If it is not an array (e.g., it's undefined, null, an object, a string, etc.), it defaults to an empty array [] instead.
-      */
-      }
-
       const totalCartPrice = cartList.reduce((accumulator, cartItem) => {
         const itemPrice = Number(cartItem.price)
         const itemQuantity = Number(cartItem.quantity)

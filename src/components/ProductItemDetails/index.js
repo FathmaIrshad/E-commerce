@@ -30,6 +30,18 @@ class ProductItemDetails extends Component {
     this.getProductData()
   }
 
+  // componentDidUpdate: Runs every time the component gets new "props" (like a new ID from the URL).
+  componentDidUpdate(prevProps) {
+    const {match} = this.props
+    const {params} = match
+    const {id} = params
+
+    // By comparing id with prevId, you ensure the API only calls when the user actually switches products.
+    if (id !== prevProps.match.params.id) {
+      this.getProductData()
+    }
+  }
+
   getFormattedData = data => ({
     availability: data.availability,
     brand: data.brand,
@@ -116,6 +128,7 @@ class ProductItemDetails extends Component {
       {value => {
         const {productData, quantity, similarProductsData} = this.state
         const {
+          id,
           availability,
           brand,
           description,
