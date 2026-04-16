@@ -15,26 +15,46 @@ import './App.css'
 class App extends Component {
   state = {
     cartList: [],
-    quantity: 1,
+    // quantity: 1,
   }
 
   //   TODO: Add your code for remove all cart items, increment cart item quantity, decrement cart item quantity, remove cart item
 
   addCartItem = product => {
-    // this.setState(prevState => ({cartList: [...prevState.cartList, product]}))
-    //   TODO: Update the code here to implement addCartItem
-    this.setState(prev => {
-      const exists = prev.cartList.find(item => item.id === product.id) // check duplicate
-      return {
-        cartList: exists
-          ? prev.cartList.map(item =>
-              item.id === product.id
-                ? {...item, quantity: item.quantity + product.quantity}
-                : item,
-            )
-          : [...prev.cartList, product],
-      } // merge or add
-    })
+    // this.setState(prev => {
+    //   const exists = prev.cartList.find(item => item.id === product.id) // check duplicate.
+    //   return {
+    //     cartList: exists
+    //       ? prev.cartList.map(item =>
+    //           item.id === product.id
+    //             ? {...item, quantity: item.quantity + product.quantity}
+    //             : item,
+    //         )
+    //       : [...prev.cartList, product],
+    //   } // merge or add
+    // })
+    const {cartList} = this.state
+    const productObject = cartList.find(item => item.id === product.id)
+
+    if (productObject) {
+      // We found it! Now let's create a NEW list where ONLY this item is updated
+      const updatedCartList = cartList.map(eachItem => {
+        if (eachItem.id === product.id) {
+          // 1. Calculate new quantity
+          const newQuantity = eachItem.quantity + product.quantity
+          // 2. Return the updated item
+          return {...eachItem, quantity: newQuantity}
+        }
+        // 3. Return all other items exactly as they are
+        return eachItem
+      })
+      this.setState({cartList: updatedCartList})
+    } else {
+      // If it's a brand new item, just add it to the end
+      this.setState(prevState => ({
+        cartList: [...prevState.cartList, product],
+      }))
+    }
   }
 
   removeAllCartItems = () => {
@@ -71,6 +91,7 @@ class App extends Component {
               ),
       } // remove or decrement
     })
+
     // const updatedCartList = cartList.map(cartItem => {
     //   if (cartItem.id === id) {
     //     return {...cartItem, quantity: cartItem.quantity - 1}

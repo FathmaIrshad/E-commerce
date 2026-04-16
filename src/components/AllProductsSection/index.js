@@ -98,6 +98,7 @@ class AllProductsSection extends Component {
       activeRatingId,
     } = this.state
     const apiUrl = `https://apis.ccbp.in/products?sort_by=${activeOptionId}&category=${activeCategoryId}&title_search=${searchInput}&rating=${activeRatingId}`
+    // The URL is made of a Base URL followed by four Query Parameters:
     const options = {
       headers: {
         Authorization: `Bearer ${jwtToken}`,

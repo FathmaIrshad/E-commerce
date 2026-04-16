@@ -2,32 +2,33 @@ import {BsSearch} from 'react-icons/bs'
 
 import './index.css'
 
+// It receives everything (data and functions) via props.
 const FiltersGroup = props => {
   const renderRatingsFiltersList = () => {
-    const {ratingsList} = props
+    const {ratingsList, changeRating, activeRatingId} = props
 
-    return ratingsList.map(rating => {
-      const {changeRating, activeRatingId} = props
-      const ratingClassName =
-        activeRatingId === rating.ratingId ? `and-up active-rating` : `and-up`
-
-      const onClickRatingItem = () => changeRating(rating.ratingId)
-
-      return (
-        <li
-          className="rating-item"
-          key={rating.ratingId}
-          onClick={onClickRatingItem}
+    return ratingsList.map(rating => (
+      <li
+        className="rating-item"
+        key={rating.ratingId}
+        onClick={() => changeRating(rating.ratingId)}
+      >
+        <img
+          src={rating.imageUrl}
+          alt={`rating ${rating.ratingId}`}
+          className="rating-img"
+        />
+        <p
+          className={
+            activeRatingId === rating.ratingId
+              ? `and-up active-rating`
+              : `and-up`
+          }
         >
-          <img
-            src={rating.imageUrl}
-            alt={`rating ${rating.ratingId}`}
-            className="rating-img"
-          />
-          <p className={ratingClassName}>& up</p>
-        </li>
-      )
-    })
+          & up
+        </p>
+      </li>
+    ))
   }
 
   const renderRatingsFilters = () => (
@@ -38,26 +39,46 @@ const FiltersGroup = props => {
   )
 
   const renderCategoriesList = () => {
-    const {categoryOptions} = props
+    const {categoryOptions, changeCategory, activeCategoryId} = props
 
-    return categoryOptions.map(category => {
-      const {changeCategory, activeCategoryId} = props
-      const onClickCategoryItem = () => changeCategory(category.categoryId)
-      const isActive = category.categoryId === activeCategoryId
-      const categoryClassName = isActive
-        ? `category-name active-category-name`
-        : `category-name`
+    // return categoryOptions.map(category => {
+    //   const onClickCategoryItem = () => changeCategory(category.categoryId)
+    //   const isActive = category.categoryId === activeCategoryId
+    //   const categoryClassName = isActive
+    //     ? `category-name active-category-name`
+    //     : `category-name`
 
-      return (
-        <li
-          className="category-item"
-          key={category.categoryId}
-          onClick={onClickCategoryItem}
-        >
-          <p className={categoryClassName}>{category.name}</p>
-        </li>
-      )
-    })
+    //   return (
+    // <li
+    //   className="category-item"
+    //   key={category.categoryId}
+    //   onClick={onClickCategoryItem}
+    // >
+    //   <p className={categoryClassName}>{category.name}</p>
+    // </li>
+    //   )
+    // })
+
+    return (
+      <div>
+        {categoryOptions.map(category => (
+          <li
+            key={category.categoryId}
+            onClick={() => changeCategory(category.categoryId)}
+          >
+            <p
+              className={
+                category.categoryId === activeCategoryId
+                  ? 'category-name active-category-name'
+                  : 'category-name'
+              }
+            >
+              {category.name}
+            </p>
+          </li>
+        ))}
+      </div>
+    )
   }
 
   const renderProductCategories = () => (

@@ -1,5 +1,6 @@
 import React from 'react'
 
+// creates the "blueprint" for your shared data.
 const CartContext = React.createContext({
   cartList: [],
   removeAllCartItems: () => {},

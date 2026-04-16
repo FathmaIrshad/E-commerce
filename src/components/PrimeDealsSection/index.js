@@ -12,6 +12,7 @@ const apiStatusConstants = {
   failure: 'FAILURE',
   inProgress: 'IN_PROGRESS',
 }
+// This is a state machine. Instead of using random strings, you use these fixed variables (INITIAL, SUCCESS, etc.) to track exactly what is happening with the API.
 
 class PrimeDealsSection extends Component {
   state = {
@@ -34,6 +35,7 @@ class PrimeDealsSection extends Component {
     const options = {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
+        // You are sending the token in the Headers. The backend checks this to see if you are a "Prime" member.
       },
       method: 'GET',
     }
@@ -52,8 +54,7 @@ class PrimeDealsSection extends Component {
         primeDeals: updatedData,
         apiStatus: apiStatusConstants.success,
       })
-    }
-    if (response.status === 401) {
+    } else {
       this.setState({
         apiStatus: apiStatusConstants.failure,
       })

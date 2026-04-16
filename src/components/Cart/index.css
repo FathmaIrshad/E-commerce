@@ -73,6 +73,24 @@
   outline: none;
   width: 300px;
 }
-.cart-total-container{
+.cart-total-container {
   align-self: flex-end;
+}
+.popup-content {
+  width: 90%;
+  max-width: 500px;
+  border-radius: 12px;
+  background-color: #ffffff;
+  padding: 0px; /* Let modal-container handle padding */
+  border: none !important; /* Remove default library borders */
+}
+.modal-container {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+.popup-overlay {
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent dark background */
+  backdrop-filter: blur(8px);    /* This blurs everything behind the popup */
+  -webkit-backdrop-filter: blur(8px); /*Support for Safari*/
 }

@@ -121,6 +121,7 @@ class ProductItemDetails extends Component {
 
   onIncrementQuantity = () => {
     this.setState(prevState => ({quantity: prevState.quantity + 1}))
+    // incrementCartItemQuantity(id) This function from context is meant to update an item already inside the cart list (in App.js).On this specific product page, the user hasn't added the item to the cart yet; they are just choosing how many they want to add. Therefore, you should stick to updating the local state quantity first.
   }
 
   renderProductDetailsView = () => (
@@ -138,7 +139,7 @@ class ProductItemDetails extends Component {
           title,
           totalReviews,
         } = productData
-        const {addCartItem} = value
+        const {addCartItem, incrementCartItemQuantity} = value
         const onClickAddToCart = () => {
           addCartItem({...productData, quantity})
         }
