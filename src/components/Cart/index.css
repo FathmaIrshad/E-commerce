@@ -91,6 +91,6 @@
 }
 .popup-overlay {
   background: rgba(0, 0, 0, 0.5); /* Semi-transparent dark background */
-  backdrop-filter: blur(8px);    /* This blurs everything behind the popup */
+  backdrop-filter: blur(8px); /* This blurs everything behind the popup */
   -webkit-backdrop-filter: blur(8px); /*Support for Safari*/
 }
